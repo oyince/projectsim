@@ -12,7 +12,6 @@ jobs:
             aws cloudformation deploy \
               --template-file template.yml \
               --stack-name my-simStack
-              --region us-east-1
 workflows:
   # Name the workflow
   myWorkflow:
