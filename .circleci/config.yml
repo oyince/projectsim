@@ -1,17 +1,17 @@
 version: 2.1
 # Use a package of configuration called an orb.
 jobs:
-  create_infrastructure: 
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          name: Create Cloudformation Stack
-          command: |
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name my-simStack
+  #create_infrastructure: 
+    #docker:
+      #- image: amazon/aws-cli
+    #steps:
+      #- checkout
+      #- run:
+          #name: Create Cloudformation Stack
+          #command: |
+            #aws cloudformation deploy \
+              #--template-file template.yml \
+              #--stack-name my-simStack
   configure_infrastructure: 
     docker:
       - image: python:3.7-alpine3.11
@@ -34,5 +34,6 @@ workflows:
   # Name the workflow
   myWorkflow:
     jobs:
-      - create_infrastructure
+      #- create_infrastructure
+      - configure_infrastructure
   
