@@ -28,16 +28,21 @@ jobs:
           name: Configure server
           command: |
             ansible-playbook -i inventory.txt main2.yml 
-      - run:
-          name: check website
-          command: |
-            if curl -s --head "https://google.com" 
-            then
-              echo "It worked!"
-            else
-              echo "It failed"
-            fi
-      
+    smoke_test:
+      docker:
+        - image: alpine:latest
+      steps:
+        - run: apk add --update curl
+        - run:
+            name: smoke test
+            command: |
+              URL="https://www.kodekloud-engineer.com/"
+              if curl -s --head ${URL} 
+              then
+                return 0
+              else
+                return 1
+              fi     
 
     
 workflows:
@@ -46,4 +51,5 @@ workflows:
     jobs:
       #- create_infrastructure
       - configure_infrastructure
+      - smoke_test
   
