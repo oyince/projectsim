@@ -36,7 +36,7 @@ jobs:
         - run:
             name: smoke test
             command: |
-              URL="https://www.kodekloud-engineer.com/"
+              URL="https://www.kode1kloud-engineer.com/"
               if curl -s --head ${URL} 
               then
                 return 0
