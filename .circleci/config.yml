@@ -27,7 +27,17 @@ jobs:
       - run:
           name: Configure server
           command: |
-            ansible-playbook -i inventory.txt main2.yml
+            ansible-playbook -i inventory.txt main2.yml 
+      - run:
+          name: check website
+          command: |
+            if curl -s --head "https://google.com" 
+            then
+              echo "It worked!"
+            else
+              echo "It failed"
+            fi
+      
 
     
 workflows:
